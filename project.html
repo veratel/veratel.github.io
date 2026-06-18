@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vera Martel – AI Automation Product Owner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
+
+  <!--
+    ╔══════════════════════════════════════════════════════════╗
+    ║  COLOR PALETTES – swap the :root variables to switch     ║
+    ║                                                          ║
+    ║  A) CURRENT → Soft Dark (indigo + pink)                  ║
+    ║  B) Light → Cream + Forest Green (#F8F7F4 / #2D6A4F)    ║
+    ║  C) Bold → Off-white + Electric Coral (#FAFAF8 / #FF4444)║
+    ╚══════════════════════════════════════════════════════════╝
+  -->
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   CSS VARIABLES
+   ═══════════════════════════════════════════════════════════════════ */
+:root {
+  --bg:          #0D0D14;
+  --surface:     #17171F;
+  --surface-2:   #1E1E2A;
+  --border:      #2A2A38;
+  --border-2:    #353548;
+
+  --accent:      #7C6FF7;        /* indigo violet */
+  --accent-soft: rgba(124,111,247,0.12);
+  --accent-glow: rgba(124,111,247,0.25);
+  --pink:        #FF6B9D;        /* coral pink – TechLabs vibe */
+  --pink-soft:   rgba(255,107,157,0.12);
+
+  --text:        #F0EFF6;
+  --text-2:      #9B97B5;
+  --text-3:      #5E5A78;
+
+  --green:       #4ADE80;
+  --green-soft:  rgba(74,222,128,0.12);
+
+  --radius-sm:   10px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 60px;
+  background: rgba(13,13,20,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(20px, 6vw, 80px);
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.nav-logo {
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-logo-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.nav-cta {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text) !important;
+  background: var(--accent-soft) !important;
+  border: 1px solid var(--accent-glow);
+  padding: 6px 16px !important;
+  border-radius: 20px !important;
+}
+
+.nav-cta:hover {
+  background: var(--accent-glow) !important;
+}
+
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════════════════════ */
+.hero {
+  padding: 120px clamp(20px, 8vw, 120px) 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-left {}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--pink-soft);
+  border: 1px solid rgba(255,107,157,0.25);
+  color: var(--pink);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+}
+
+.hero-badge-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--pink);
+}
+
+.hero-name {
+  font-size: clamp(42px, 6vw, 76px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.hero-name-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-title {
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 500;
+  color: var(--text-2);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+.hero-about {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text-2);
+  max-width: 580px;
+  margin-bottom: 40px;
+}
+
+.hero-about strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.hero-contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.contact-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 7px 14px;
+  border-radius: 20px;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.contact-chip:hover {
+  color: var(--text);
+  border-color: var(--border-2);
+  background: var(--surface-2);
+}
+
+.contact-chip svg { flex-shrink: 0; }
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  border-radius: 8px;
+  letter-spacing: 0.01em;
+}
+
+.tag--accent {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--accent-glow);
+}
+
+.tag--pink {
+  color: var(--pink);
+  background: var(--pink-soft);
+  border-color: rgba(255,107,157,0.25);
+}
+
+/* Hero right – avatar placeholder */
+.hero-avatar-wrap {
+  flex-shrink: 0;
+  width: clamp(200px, 18vw, 260px);
+}
+
+.hero-avatar {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-avatar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-soft) 0%, var(--pink-soft) 100%);
+}
+
+.hero-avatar-initials {
+  position: relative;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 90px;
+    gap: 36px;
+  }
+  .hero-avatar-wrap {
+    width: 120px;
+    order: -1;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SECTION WRAPPER
+   ═══════════════════════════════════════════════════════════════════ */
+.section {
+  padding: 80px clamp(20px, 8vw, 120px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-divider {
+  height: 1px;
+  background: var(--border);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 8vw, 120px);
+}
+
+.section-divider-line {
+  height: 1px;
+  background: var(--border);
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.section-headline {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+
+.section-sub {
+  font-size: 17px;
+  color: var(--text-2);
+  max-width: 520px;
+  line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ABOUT SECTION
+   ═══════════════════════════════════════════════════════════════════ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.about-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 30px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.about-card:hover {
+  border-color: var(--border-2);
+  transform: translateY(-3px);
+}
+
+.about-card--wide {
+  grid-column: 1 / 4;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border-color: var(--border-2);
+}
+
+.about-card-icon {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.about-card-icon--pink {
+  background: var(--pink-soft);
+  border-color: rgba(255,107,157,0.25);
+  color: var(--pink);
+}
+
+.about-card-icon--green {
+  background: var(--green-soft);
+  border-color: rgba(74,222,128,0.25);
+  color: var(--green);
+}
+
+.about-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.about-card-body {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+.about-card-body strong { color: var(--text); font-weight: 600; }
+
+@media (max-width: 860px) {
+  .about-grid { grid-template-columns: 1fr 1fr; }
+  .about-card--wide { grid-column: 1 / 3; }
+}
+
+@media (max-width: 540px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-card--wide { grid-column: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   EXPERIENCE TIMELINE
+   ═══════════════════════════════════════════════════════════════════ */
+.timeline {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), var(--border) 80%);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-dot-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 6px;
+}
+
+.timeline-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+  flex-shrink: 0;
+  margin-left: 11px;
+}
+
+.timeline-dot--current {
+  background: var(--green);
+  box-shadow: 0 0 0 3px rgba(74,222,128,0.2), 0 0 12px rgba(74,222,128,0.3);
+}
+
+.timeline-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px 26px;
+  transition: border-color 0.2s;
+}
+
+.timeline-content:hover { border-color: var(--border-2); }
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.timeline-role {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.timeline-date {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-glow);
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.timeline-date--current {
+  color: var(--green);
+  background: var(--green-soft);
+  border-color: rgba(74,222,128,0.25);
+}
+
+.timeline-company {
+  font-size: 14px;
+  color: var(--text-2);
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.timeline-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.timeline-bullets li {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+}
+
+.timeline-bullets li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 12px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SKILLS / TOOLS
+   ═══════════════════════════════════════════════════════════════════ */
+.skills-section { margin-top: 48px; }
+
+.skills-group {
+  margin-bottom: 32px;
+}
+
+.skills-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 14px;
+}
+
+.skills-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.skill-chip:hover {
+  color: var(--text);
+  border-color: var(--border-2);
+  background: var(--surface-2);
+}
+
+.skill-chip--ai {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--accent-glow);
+}
+
+.skill-chip--ai:hover {
+  color: var(--text);
+  background: rgba(124,111,247,0.2);
+}
+
+.skill-chip--pink {
+  color: var(--pink);
+  background: var(--pink-soft);
+  border-color: rgba(255,107,157,0.25);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CERTIFICATES
+   ═══════════════════════════════════════════════════════════════════ */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+  margin-top: 40px;
+}
+
+.cert-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.cert-card:hover {
+  border-color: var(--border-2);
+  transform: translateY(-2px);
+}
+
+.cert-card--featured {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, var(--surface-2) 0%, rgba(30,18,50,0.8) 100%);
+  border-color: rgba(255,107,157,0.3);
+  border-width: 1.5px;
+}
+
+.cert-card--featured:hover {
+  border-color: rgba(255,107,157,0.5);
+}
+
+.cert-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-2);
+  font-size: 18px;
+}
+
+.cert-icon--pink {
+  background: var(--pink-soft);
+  border-color: rgba(255,107,157,0.25);
+  color: var(--pink);
+}
+
+.cert-icon--accent {
+  background: var(--accent-soft);
+  border-color: var(--accent-glow);
+  color: var(--accent);
+}
+
+.cert-icon--green {
+  background: var(--green-soft);
+  border-color: rgba(74,222,128,0.25);
+  color: var(--green);
+}
+
+.cert-body { flex: 1; min-width: 0; }
+
+.cert-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+
+.cert-meta {
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.cert-meta strong {
+  color: var(--text-2);
+  font-weight: 600;
+}
+
+.cert-year {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+/* Featured cert layout */
+.cert-card--featured .cert-featured-inner {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cert-featured-badges {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.cert-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--pink);
+  background: var(--pink-soft);
+  border: 1px solid rgba(255,107,157,0.25);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+}
+
+.cert-badge--dark {
+  color: var(--text-2);
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+@media (max-width: 640px) {
+  .certs-grid { grid-template-columns: 1fr; }
+  .cert-card--featured { grid-column: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   EDUCATION + LANGUAGES (2-col)
+   ═══════════════════════════════════════════════════════════════════ */
+.edu-lang-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.edu-block {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 20px;
+}
+
+.edu-block .block-label {
+  margin-bottom: 0;
+}
+
+.edu-block .edu-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.lang-block {}
+
+.block-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.edu-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  transition: border-color 0.2s;
+}
+
+.edu-item:hover { border-color: var(--border-2); }
+
+.edu-degree {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.edu-school {
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.lang-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lang-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  transition: border-color 0.2s;
+}
+
+.lang-item:hover { border-color: var(--border-2); }
+
+.lang-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.lang-level {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+  background: var(--surface-2);
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+
+.lang-level--native {
+  color: var(--green);
+  background: var(--green-soft);
+}
+
+.lang-level--fluent {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+@media (max-width: 640px) {
+  .edu-lang-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FOOTER / CONTACT CTA
+   ═══════════════════════════════════════════════════════════════════ */
+.footer-cta {
+  margin: 0 clamp(20px, 8vw, 120px);
+  margin-bottom: 60px;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-xl);
+  padding: 56px 52px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-cta::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.footer-cta-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.footer-cta-headline {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.1;
+  position: relative;
+}
+
+.footer-cta-sub {
+  font-size: 17px;
+  color: var(--text-2);
+  max-width: 400px;
+  margin: 0 auto 36px;
+  line-height: 1.65;
+  position: relative;
+}
+
+.footer-cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  padding: 13px 26px;
+  border-radius: 12px;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-2);
+  background: transparent;
+  border: 1.5px solid var(--border-2);
+  padding: 12px 24px;
+  border-radius: 12px;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.btn-secondary:hover {
+  color: var(--text);
+  border-color: var(--border-2);
+  background: var(--surface-2);
+}
+
+.site-footer {
+  padding: 28px clamp(20px, 8vw, 120px);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.footer-nav {
+  display: flex;
+  gap: 4px;
+}
+
+.footer-nav a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-3);
+  padding: 5px 12px;
+  border-radius: 8px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.footer-nav a:hover {
+  color: var(--text);
+  background: var(--surface);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SCROLL REVEAL (subtle fade-in)
+   ═══════════════════════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    Vera Martel
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projekte">Projekte</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact" class="nav-cta">Kontakt</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-left">
+
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Verfügbar ab Oktober 2026
+    </div>
+
+    <h1 class="hero-name">
+      <span class="hero-name-accent">Vera</span><br>Martel
+    </h1>
+
+    <p class="hero-title">IT Product Manager · AI Automation · AI Builder</p>
+
+    <p class="hero-about">
+      IT Product Managerin mit <strong>10+ Jahren Erfahrung</strong> (u.a. 6 Jahre Telefónica),
+      mit dem aktuellen Fokus auf <strong>AI-Cowork, Design, Code und Automations</strong>.
+      Ich verbinde klassisches Stakeholder-Management mit modernen KI-Tools — und spreche
+      <strong>Deutsch und Englisch</strong> fließend.
+    </p>
+
+    <div class="hero-contact-row">
+      <a href="mailto:vera.martel.info@gmail.com" class="contact-chip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        vera.martel.info@gmail.com
+      </a>
+      <a href="tel:+4917630605156" class="contact-chip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.17h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +49 176 30 60 51 56
+      </a>
+      <span class="contact-chip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        München, Deutschland
+      </span>
+      <a href="https://www.linkedin.com/in/veramartel/" target="_blank" rel="noopener" class="contact-chip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+
+    <div class="hero-tags">
+      <span class="tag tag--accent">Claude Code</span>
+      <span class="tag tag--accent">Claude Design</span>
+      <span class="tag tag--accent">AI Automations</span>
+      <span class="tag tag--pink">UX Design</span>
+      <span class="tag">Scrum / Agile</span>
+      <span class="tag">Product Management</span>
+      <span class="tag tag--pink">TechLabs Berlin 2025</span>
+    </div>
+
+  </div>
+
+</section>
+
+<div class="section-divider"><div class="section-divider-line"></div></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ABOUT
+     ═══════════════════════════════════════════════════════════ -->
+<section class="section reveal" id="about">
+  <div class="section-label">About me</div>
+  <h2 class="section-headline">Product thinker.<br>AI builder.</h2>
+  <p class="section-sub">Vom klassischen IT-Projekt bis zu KI-getriebenen Lösungen – ich verbinde Business, UX und Technologie.</p>
+
+  <div class="about-grid">
+
+    <div class="about-card about-card--wide">
+      <div class="about-card-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      </div>
+      <div class="about-card-title">Kurz zu mir</div>
+      <!-- ↓ TODO: Hier deinen persönlichen Text über Claude Code, Design & Automations einbauen -->
+      <div class="about-card-body">
+        Ich schaue mir gerne an, wie Anwendungen im Alltag genutzt werden, und überlege, wie man Customer Experience verbessern kann.
+        Das beginnt nicht erst in der Software, sondern schon beim ersten Kontakt mit dem Produkt.
+        Mit <strong>Claude Design</strong> gestalte ich intuitive Interfaces und Brand-Identities,
+        mit <strong>Claude Code</strong> entwickle ich schnell funktionierende Prototypen, Webseiten und Lösungen
+        und mit <strong>Automations</strong> spare ich mir wertvolle Zeit.
+      </div>
+    </div>
+
+    <div class="about-card">
+      <div class="about-card-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="about-card-title">Was mich antreibt</div>
+      <div class="about-card-body">Einfache Lösungen für komplexe Probleme. Nutzer im Mittelpunkt. Technologie als Werkzeug – nicht als Selbstzweck.</div>
+    </div>
+
+    <div class="about-card">
+      <div class="about-card-icon about-card-icon--pink">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+      </div>
+      <div class="about-card-title">AI-first Mindset</div>
+      <div class="about-card-body">Ich gestalte mit <strong>Claude Design</strong>, baue mit <strong>Claude Code</strong> und automatisiere repetitive Prozesse – vom ersten Prototyp bis zum fertigen Produkt.</div>
+    </div>
+
+    <div class="about-card">
+      <div class="about-card-icon about-card-icon--green">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="about-card-title">Collaboration</div>
+      <div class="about-card-body">Von der Anforderungsanalyse bis zum Go-Live: Ich brücke den Gap zwischen Business, Design und Entwicklung – in Deutsch und Englisch.</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-line"></div></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     EIGENE PRODUKTE
+     ═══════════════════════════════════════════════════════════ -->
+<section class="section reveal" id="projekte">
+  <div class="section-label">Side Projects &amp; Builder</div>
+  <h2 class="section-headline">Eigene Produkte<br>&amp; Projekte</h2>
+
+  <div class="timeline" style="margin-top:40px;">
+
+    <div class="timeline-item">
+      <div class="timeline-dot-col"><div class="timeline-dot timeline-dot--current"></div></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <div class="timeline-role">Acceptaria — Digital Menu &amp; Order &amp; Pay</div>
+          <div class="timeline-date timeline-date--current">2024 · aktuell</div>
+        </div>
+        <div class="timeline-company">Founder · SaaS-Plattform für Restaurants · <a href="https://acceptaria.online" target="_blank" rel="noopener" style="color:var(--accent);">acceptaria.online</a></div>
+        <ul class="timeline-bullets">
+          <li>SaaS-Plattform für digitale Speisekarten und Bestellung am Tisch</li>
+          <li>End-to-End verantwortet: Produktstrategie, UX, Entwicklung mit KI-Tools, Pricing und Direktvertrieb</li>
+          <li>Kunden: Gastronomen in München</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot-col"><div class="timeline-dot"></div></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <div class="timeline-role">Webseiten &amp; Local-SEO mit KI</div>
+          <div class="timeline-date">Projektbasiert</div>
+        </div>
+        <div class="timeline-company">Service für kleine Unternehmen · <a href="https://xn--80atkccfedhg2j.xn--p1ai/" target="_blank" rel="noopener" style="color:var(--accent);">Entsorgungsunternehmen</a></div>
+        <ul class="timeline-bullets">
+          <li>Konzeption, Design und Umsetzung kompletter Firmen-Webauftritte mit Claude Code &amp; Claude Design</li>
+          <li>Einrichtung von Google Business</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot-col"><div class="timeline-dot"></div></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <div class="timeline-role">AgroVision AI</div>
+          <div class="timeline-date">2025 – 2026</div>
+        </div>
+        <div class="timeline-company">TechLabs Berlin · UX Design Track</div>
+        <ul class="timeline-bullets">
+          <li>KI-gestützte App zur Erkennung von Pflanzenkrankheiten per Foto-Analyse</li>
+          <li>User Research, Wireframing, Prototyping, Usability-Testing im 4-Personen-Team</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-line"></div></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     EXPERIENCE
+     ═══════════════════════════════════════════════════════════ -->
+<section class="section reveal" id="experience">
+  <div class="section-label">Berufserfahrung</div>
+  <h2 class="section-headline">Work Experience</h2>
+  <p class="section-sub">10+ Jahre in IT-Projekten, Produktmanagement und digitaler Transformation.</p>
+
+  <div class="timeline">
+
+    <!-- Current -->
+    <div class="timeline-item">
+      <div class="timeline-dot-col">
+        <div class="timeline-dot timeline-dot--current"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <div class="timeline-role">IT Project Manager</div>
+          <div class="timeline-date timeline-date--current">10.2025 · aktuell</div>
+        </div>
+        <div class="timeline-company">München, Deutschland</div>
+        <ul class="timeline-bullets">
+          <li>Anforderungsworkshops mit drei Fachbereichen für den Aufbau eines neuen Monitoring-Services konzipiert und moderiert</li>
+          <li>Funktionale und technische Anforderungen für drei Stakeholder-Gruppen konsolidiert und abgestimmt</li>
+          <li>Risiko- und Abhängigkeitsmanagement über drei beteiligte Teams hinweg</li>
+          <li>Service-Konzept nach sechs Monaten zur Entscheidungsreife gebracht</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Gap: AI-Upskilling -->
+    <div class="timeline-item">
+      <div class="timeline-dot-col"><div class="timeline-dot"></div></div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <div class="timeline-role">AI-Upskilling &amp; acceptaria</div>
+          <div class="timeline-date">06.2025 – 09.2025</div>
+        </div>
+        <div class="timeline-company">Selbstständig · München</div>
+        <ul class="timeline-bullets">
+          <li>Produktkonzept acceptaria weiterentwickelt und Kundenakquise betrieben</li>
+          <li>Kenntnisse in Claude Code, Lovable, Replit, Base44 und AI-Automations vertieft</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Aveyara -->
+    <div class="timeline-item">
+      <div class="timeline-dot-col">
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <div class="timeline-role">Proxy Product Owner & Scrum Master</div>
+          <div class="timeline-date">02.2025 – 05.2025</div>
+        </div>
+        <div class="timeline-company">Aveyara · Stuttgart, Deutschland</div>
+        <ul class="timeline-bullets">
+          <li>Anforderungen für einen Web-App-Store für Schulen in Baden-Württemberg präzisiert und nach Impact priorisiert</li>
+          <li>Scrum-Events für ein 6-köpfiges Team moderiert; Releases getestet und freigegeben</li>
+          <li>Probleme vor Go-Live identifiziert und behoben</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Telefonica Sr. IT PM -->
+    <div class="timeline-item">
+      <div class="timeline-dot-col">
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <div class="timeline-role">Sr. IT Product Manager</div>
+          <div class="timeline-date">12.2018 – 10.2024</div>
+        </div>
+        <div class="timeline-company">Telefonica · München, Deutschland · 6 Jahre</div>
+        <ul class="timeline-bullets">
+          <li>Projektteams von bis zu 20 externen Mitarbeitern und Beratern im Customer Service fachlich geführt (Budget 2–4 Mio. €)</li>
+          <li>Als Product Owner die Integration der Callcenter-Plattform in Cloud-Anwendungen verantwortet — Launch eines Prepaid-Channels nach sechs Monaten</li>
+          <li>Anbieterauswahl und PoC für ein Echtzeit-Coaching-Tool geleitet: 6 Anbieter evaluiert, PoC mit 20 Agenten durchgeführt, Management-Entscheidung herbeigeführt</li>
+          <li>Cross-Selling-Kampagnen für die o2-Bestandskundenbasis (ca. 2 Mio. Kunden je Kampagne) geplant und umgesetzt</li>
+          <li>Neuen RCS-Marketingkanal pilotiert — schnelle Umsetzung ohne lange Interface- und Datenschutzklärungen ermöglicht</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CGI -->
+    <div class="timeline-item">
+      <div class="timeline-dot-col">
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <div class="timeline-role">Consultant Digital Transformation</div>
+          <div class="timeline-date">01.2017 – 11.2018</div>
+        </div>
+        <div class="timeline-company">CGI · Düsseldorf / München, Deutschland</div>
+        <ul class="timeline-bullets">
+          <li>Business Analyst und PMO in verschiedenen Transformationsprogrammen</li>
+          <li>Projektinitiierung und Anforderungsanalyse für Web- und App-Applikationen</li>
+          <li>Anforderungsmanagement und Analyse eines neuen Retail-Frontend-Systems</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Syngenta -->
+    <div class="timeline-item">
+      <div class="timeline-dot-col">
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <div class="timeline-role">Project Support (interim)</div>
+          <div class="timeline-date">03.2016 – 12.2016</div>
+        </div>
+        <div class="timeline-company">Syngenta Seeds EMEA Pricing · Kleve, Deutschland</div>
+        <ul class="timeline-bullets">
+          <li>Unterstützung bei der Einführung eines regionalen Preisprojekts</li>
+          <li>Modellierung von Preiskonditionen und Durchführung von SAP-Freigabeprozessen</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Early career -->
+    <div class="timeline-item">
+      <div class="timeline-dot-col">
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <div class="timeline-role">Marketing & Customer Service</div>
+          <div class="timeline-date">01.2011 – 12.2015</div>
+        </div>
+        <div class="timeline-company">Verschiedene Projekte · Lokal & Global, Russland & Deutschland</div>
+        <ul class="timeline-bullets">
+          <li>Tätigkeiten im lokalen und globalen Marketing sowie im Customer Service</li>
+          <li>Durchführung von Wettbewerbsanalysen auf Unternehmens- und Markenebene</li>
+          <li>Leitung regionaler Initiativen – Promotion-Aktionen und Produkteinführungen</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-line"></div></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SKILLS & TOOLS
+     ═══════════════════════════════════════════════════════════ -->
+<section class="section reveal" id="skills">
+  <div class="section-label">Skills & Tools</div>
+  <h2 class="section-headline">Was ich mitbringe</h2>
+
+  <div class="skills-section">
+
+    <div class="skills-group">
+      <div class="skills-group-label">AI & Automation</div>
+      <div class="skills-chips">
+        <span class="skill-chip skill-chip--ai">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+          Claude Code
+        </span>
+        <span class="skill-chip skill-chip--ai">Claude Design</span>
+        <span class="skill-chip skill-chip--ai">AI Automations</span>
+        <span class="skill-chip skill-chip--ai">Prompt Engineering</span>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <div class="skills-group-label">Product & Agile</div>
+      <div class="skills-chips">
+        <span class="skill-chip">Product Management</span>
+        <span class="skill-chip">Requirements Engineering (IREB)</span>
+        <span class="skill-chip">Scrum (PSPO I, PAL I)</span>
+        <span class="skill-chip">User Research</span>
+        <span class="skill-chip">UX / Prototyping</span>
+        <span class="skill-chip">Usability Testing</span>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <div class="skills-group-label">Tools & Platforms</div>
+      <div class="skills-chips">
+        <span class="skill-chip skill-chip--pink">Jira</span>
+        <span class="skill-chip">Confluence</span>
+        <span class="skill-chip">Azure DevOps</span>
+        <span class="skill-chip">Figma</span>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <div class="skills-group-label">Cloud & Tech</div>
+      <div class="skills-chips">
+        <span class="skill-chip">API Integration</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-line"></div></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CERTIFICATES
+     ═══════════════════════════════════════════════════════════ -->
+<section class="section reveal" id="certs">
+  <div class="section-label">Zertifikate</div>
+  <h2 class="section-headline">Certificates</h2>
+
+  <div class="certs-grid">
+
+    <!-- FEATURED: Digital Shaper -->
+    <div class="cert-card cert-card--featured">
+      <div class="cert-card-icon cert-icon--pink">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+      </div>
+      <div class="cert-body">
+        <div class="cert-title" style="font-size:18px;">🎓 TechLabs Berlin · UX Design Track</div>
+        <div class="cert-meta" style="margin-bottom:10px;font-size:14px;color:var(--text-2);">
+          <strong>TechLabs Berlin</strong> · 2025 · EU Co-financed
+        </div>
+        <div class="cert-meta" style="font-size:13px;color:var(--text-3);margin-bottom:12px;">
+          UX Design Track · Final Project: <strong style="color:var(--pink);">AgroVision AI</strong> – AI-powered plant disease detection app
+        </div>
+        <div class="cert-featured-badges">
+          <span class="cert-badge">User Research</span>
+          <span class="cert-badge">Wireframing</span>
+          <span class="cert-badge">Prototyping</span>
+          <span class="cert-badge">Usability Testing</span>
+          <span class="cert-badge cert-badge--dark">Berlin</span>
+          <span class="cert-badge cert-badge--dark">UX</span>
+          <span class="cert-badge cert-badge--dark">AI</span>
+        </div>
+      </div>
+      <div class="cert-year" style="color:var(--pink);">2025</div>
+    </div>
+
+    <!-- PSPO -->
+    <div class="cert-card">
+      <div class="cert-icon cert-icon--accent">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <div class="cert-body">
+        <div class="cert-title">Professional SCRUM Product Owner I</div>
+        <div class="cert-meta"><strong>Scrum.org</strong> · PSPO I</div>
+      </div>
+      <div class="cert-year">2024</div>
+    </div>
+
+    <!-- PAL I -->
+    <div class="cert-card">
+      <div class="cert-icon cert-icon--accent">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="cert-body">
+        <div class="cert-title">Professional Agile Leadership PAL I</div>
+        <div class="cert-meta"><strong>Scrum.org</strong> · PAL I</div>
+      </div>
+      <div class="cert-year">2022</div>
+    </div>
+
+    <!-- Prince2 -->
+    <div class="cert-card">
+      <div class="cert-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      </div>
+      <div class="cert-body">
+        <div class="cert-title">Prince2 Foundation Project Management</div>
+        <div class="cert-meta"><strong>Axelos Global Best Practice</strong></div>
+      </div>
+      <div class="cert-year">2021</div>
+    </div>
+
+    <!-- LeSS -->
+    <div class="cert-card">
+      <div class="cert-icon cert-icon--accent">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+      </div>
+      <div class="cert-body">
+        <div class="cert-title">LeSS Basics Certification</div>
+        <div class="cert-meta"><strong>The LeSS Company</strong> · Large-Scale Scrum</div>
+      </div>
+      <div class="cert-year">2020</div>
+    </div>
+
+    <!-- IREB -->
+    <div class="cert-card">
+      <div class="cert-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <div class="cert-body">
+        <div class="cert-title">Certified Professional Requirements Engineering</div>
+        <div class="cert-meta"><strong>IREB</strong> · Foundation Level</div>
+      </div>
+      <div class="cert-year">2019</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-line"></div></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     EDUCATION + LANGUAGES
+     ═══════════════════════════════════════════════════════════ -->
+<section class="section reveal">
+  <div class="edu-lang-grid">
+
+    <div class="edu-block">
+      <div class="block-label">Ausbildung</div>
+
+      <div class="edu-item">
+        <div class="edu-degree">M.A. International Marketing</div>
+        <div class="edu-school">2014</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-degree">Diplom Organizational Management</div>
+        <div class="edu-school">2010</div>
+      </div>
+    </div>
+
+    <div class="lang-block">
+      <div class="block-label">Sprachen</div>
+      <div class="lang-list">
+        <div class="lang-item">
+          <span class="lang-name">Deutsch</span>
+          <span class="lang-level lang-level--native">C1</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Englisch</span>
+          <span class="lang-level lang-level--fluent">Fließend</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Russisch</span>
+          <span class="lang-level lang-level--fluent">Fließend</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Spanisch</span>
+          <span class="lang-level">Grundkenntnisse</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CONTACT CTA
+     ═══════════════════════════════════════════════════════════ -->
+<div class="footer-cta reveal" id="contact">
+  <div class="footer-cta-label">AI Automation Product Owner · Festanstellung</div>
+  <h2 class="footer-cta-headline">Bereit für die<br>nächste Herausforderung.</h2>
+  <p class="footer-cta-sub">Verfügbar ab Oktober 2026 — remote oder in München. Ich freue mich auf ein Gespräch über die Position bei Ihnen.</p>
+  <div class="footer-cta-buttons">
+    <a href="mailto:vera.martel.info@gmail.com" class="btn-primary">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      E-Mail schreiben
+    </a>
+    <a href="https://www.linkedin.com/in/veramartel/" target="_blank" rel="noopener" class="btn-secondary">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn-Profil
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-copy">© 2026 Vera Martel · München, Deutschland</div>
+  <nav class="footer-nav">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#certs">Certificates</a>
+  </nav>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCROLL REVEAL JS
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
